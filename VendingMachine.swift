@@ -23,6 +23,26 @@ protocol ItemType {
   var quantity: Double { get set }
 }
 
+enum InventoryError: ErrorType {
+  case InvalidResource
+  case ConversionError
+}
+
+class PlistConverter {
+  class func dictionaryFromFile(resource: String, ofType type: String) throws -> [String: AnyObject] {
+    guard let path = NSBundle.mainBundle().pathForResource(resource, ofType: type) else {
+      throw InventoryError.InvalidResource
+    }
+    
+    guard let dictionary = NSDictionary(contentsOfFile: path),
+    let castDictionary = dictionary as? [String: AnyObject] else {
+      throw InventoryError.ConversionError
+    }
+    
+    return castDictionary
+  }
+}
+
 enum VendingSelection {
   case Soda
   case DietSoda
