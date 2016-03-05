@@ -10,6 +10,17 @@ import Foundation
 
 protocol VendingMachineType {
   var selection: [VendingSelection] { get }
+  var inventory: [VendingSelection: ItemType] { get set }
+  var amountDeposited: Double { get set }
+  
+  init(inventory: [VendingSelection: ItemType])
+  func vend(selection: VendingSelection, quantity: Double) throws
+  func deposit(amount: Double)
+}
+
+protocol ItemType {
+  var price: Double { get }
+  var quantity: Double { get set }
 }
 
 enum VendingSelection {
