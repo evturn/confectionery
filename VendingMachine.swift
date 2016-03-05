@@ -52,7 +52,7 @@ class VendingMachine: VendingMachineType {
   var inventory: [VendingSelection: ItemType]
   var amountDeposited: Double = 10.0
   
-  require init(inventory: [VendingSelection: ItemType]) {
+  required init(inventory: [VendingSelection: ItemType]) {
     self.inventory = inventory
   }
   
