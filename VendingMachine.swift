@@ -37,3 +37,31 @@ enum VendingSelection {
   case SportsDrink
   case Gum
 }
+
+struct VendingItem: ItemType {
+  let price: Double
+  var quantity: Double
+}
+
+class VendingMachine: VendingMachineType {
+  let selection: [VendingSelection] = [
+    .Soda, .DietSoda, .Chips, .Cookie,
+    .Sandwich, .Wrap, .CandyBar, .PopTart,
+    .Water, .FruitJuice, .SportsDrink, .Gum
+  ]
+  var inventory: [VendingSelection: ItemType]
+  var amountDeposited: Double = 10.0
+  
+  require init(inventory: [VendingSelection: ItemType]) {
+    self.inventory = inventory
+  }
+  
+  func vend(selection: VendingSelection, quantity: Double) throws {
+    // Sup
+  }
+  
+  func deposit(amount: Double) {
+    // Hi
+  }
+  
+}
