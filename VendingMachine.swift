@@ -26,6 +26,7 @@ protocol ItemType {
 enum InventoryError: ErrorType {
   case InvalidResource
   case ConversionError
+  case InvalidKey
 }
 
 class PlistConverter {
@@ -43,7 +44,28 @@ class PlistConverter {
   }
 }
 
-enum VendingSelection {
+class InventoryUnarchiver {
+  class func vendingInventoryFromDictionary(dictionary: [String: AnyObject]) throws -> [VendingSelection: ItemType] {
+    var inventory: [VendingSelection: ItemType] = [:]
+    
+    for (key, value) in dictionary {
+      if let itemDict = value as? [String: Double],
+      let price = itemDict["price"], let quantity = itemDict ["quantity"] {
+        let item = VendingItem(price: price, quantity: quantity)
+        
+        guard let key = VendingSelection(rawValue: key) else {
+          throw InventoryError.InvalidKey
+        }
+        
+        inventory.updateValue(item, forKey: key)
+      }
+    }
+    
+    return inventory
+  }
+}
+
+enum VendingSelection: String {
   case Soda
   case DietSoda
   case Chips
