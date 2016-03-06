@@ -108,8 +108,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
       do {
         try vendingMachine.vend(currentSelection, quantity:  quantity)
         updateBalanceLabel()
+      } catch VendingMachineError.OutOfStock {
+        showAlert()
       } catch {
-        // FIXME: Me no handle error
+        
       }
     } else {
       // FIXME: Bitch, you need to alert the user that they haven't selected anything
@@ -141,6 +143,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     quantity = 1
     updateTotalPriceLabel()
     updateQuantityLabel()
+  }
+  
+  func showAlert() {
+    let alertController = UIAlertController(title: "Out of Stock", message: nil, preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default, handler: dismissAlert)
+    
+    alertController.addAction(okAction)
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  func dismissAlert(sender: UIAlertAction) {
+    reset()
   }
 }
 
