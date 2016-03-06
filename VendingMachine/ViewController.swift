@@ -113,6 +113,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
       // FIXME: Bitch, you need to alert the user that they haven't selected anything
     }
   }
+  @IBAction func updateQuantity(sender: UIStepper) {
+    
+  }
   
 }
 
