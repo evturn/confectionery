@@ -109,9 +109,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         try vendingMachine.vend(currentSelection, quantity:  quantity)
         updateBalanceLabel()
       } catch VendingMachineError.OutOfStock {
-        showAlert()
-      } catch {
-        
+        showAlert("Out of Stock 😱")
+      } catch VendingMachineError.InvalidSelection {
+        showAlert("Invalid Selection 😯")
+      } catch VendingMachineError.InsufficientFunds(let amount) {
+        showAlert("You don't have enough money for this", message: "You're $\(amount) short 😐")
+      } catch let error {
+        fatalError("\(error)")
       }
     } else {
       // FIXME: Bitch, you need to alert the user that they haven't selected anything
@@ -145,8 +149,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     updateQuantityLabel()
   }
   
-  func showAlert() {
-    let alertController = UIAlertController(title: "Out of Stock", message: nil, preferredStyle: .Alert)
+  func showAlert(title: String, message: String? = nil, style: UIAlertControllerStyle = .Alert) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
     let okAction = UIAlertAction(title: "OK", style: .Default, handler: dismissAlert)
     
     alertController.addAction(okAction)
