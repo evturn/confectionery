@@ -44,7 +44,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsI-MK-Hdq">
                                                 <rect key="frame" x="8" y="63" width="53" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <color key="tintColor" red="0.96862745100000003" green="0.80000000000000004" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" red="0.1764705882" green="0.81568627449999997" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Add $5"/>
                                                 <connections>
                                                     <action selector="depositFunds" destination="BYZ-38-t0r" eventType="touchUpInside" id="dpR-QO-fNF"/>
@@ -187,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="1020" y="657"/>
         </scene>
-        <!--View Controller-->
+        <!--Deposit Controller-->
         <scene sceneID="GzU-nT-UCw">
             <objects>
-                <viewController id="iRN-Bi-PxY" sceneMemberID="viewController">
+                <viewController id="iRN-Bi-PxY" customClass="DepositController" customModule="Confectionary" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KJm-NO-NOD"/>
                         <viewControllerLayoutGuide type="bottom" id="eza-zq-lT3"/>
@@ -201,14 +201,15 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAV-Ri-e0n">
                                 <rect key="frame" x="0.0" y="544" width="600" height="56"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.17647058823529413" green="0.81568627450980391" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="FBD-o0-tOo"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="pct-1f-1CR"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Purchase"/>
+                                <state key="normal" title="Get this out of my face"/>
                                 <connections>
+                                    <action selector="dismiss" destination="iRN-Bi-PxY" eventType="touchUpInside" id="UQN-2v-JBe"/>
                                     <action selector="purchase" destination="BYZ-38-t0r" eventType="touchUpInside" id="wWJ-hA-cAd"/>
                                 </connections>
                             </button>
