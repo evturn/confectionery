@@ -37,6 +37,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     setupCollectionViewCells()
+    balanceLabel.text = "$\(vendingMachine.amountDeposited)"
   }
   
   override func didReceiveMemoryWarning() {
@@ -104,6 +105,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     if let currentSelection = currentSelection {
       do {
         try vendingMachine.vend(currentSelection, quantity:  quantity)
+        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
       } catch {
         // FIXME: Me no handle error
       }
