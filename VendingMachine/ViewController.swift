@@ -75,10 +75,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     updateCellBackgroundColor(indexPath, selected: true)
     
     currentSelection = vendingMachine.selection[indexPath.row]
-    if let currentSelection = currentSelection,
-      let item = vendingMachine.itemForCurrentSelection(currentSelection) {
-        totalLabel.text = "\(item.price)"
-    }
+    updateTotalPriceLabel()
   }
   
   func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
@@ -113,9 +110,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
       // FIXME: Bitch, you need to alert the user that they haven't selected anything
     }
   }
+  
   @IBAction func updateQuantity(sender: UIStepper) {
-    
+    quantity = sender.value
+    updateTotalPriceLabel()
   }
   
+  func updateTotalPriceLabel() {
+    if let currentSelection = currentSelection,
+      let item = vendingMachine.itemForCurrentSelection(currentSelection) {
+        totalLabel.text = "\(item.price * quantity)"
+    }
+  }
 }
 
