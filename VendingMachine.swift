@@ -127,7 +127,7 @@ class VendingMachine: VendingMachineType {
     
     let totalPrice = item.price * quantity
     if amountDeposited >= totalPrice {
-      amountDeposited -+ totalPrice
+      amountDeposited -= totalPrice
     } else {
       let amountRequired = totalPrice - amountDeposited
       throw VendingMachineError.InsufficientFunds(required: amountRequired)
