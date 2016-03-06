@@ -17,6 +17,7 @@ protocol VendingMachineType {
   init(inventory: [VendingSelection: ItemType])
   func vend(selection: VendingSelection, quantity: Double) throws
   func deposit(amount: Double)
+  func itemForCurrentSelection(selection: VendingSelection) -> ItemType?
 }
 
 protocol ItemType {
@@ -132,6 +133,10 @@ class VendingMachine: VendingMachineType {
       let amountRequired = totalPrice - amountDeposited
       throw VendingMachineError.InsufficientFunds(required: amountRequired)
     }
+  }
+  
+  func itemForCurrentSelection(selection: VendingSelection) -> ItemType? {
+    return inventory[selection]
   }
   
   func deposit(amount: Double) {

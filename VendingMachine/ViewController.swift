@@ -74,6 +74,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     updateCellBackgroundColor(indexPath, selected: true)
     
     currentSelection = vendingMachine.selection[indexPath.row]
+    if let currentSelection = currentSelection,
+      let item = vendingMachine.itemForCurrentSelection(currentSelection) {
+        totalLabel.text = "\(item.price)"
+    }
   }
   
   func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
