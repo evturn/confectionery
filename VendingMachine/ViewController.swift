@@ -45,6 +45,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // Dispose of any resources that can be recreated.
   }
   
+  func setUpViews() {
+    updateQuantityLabel()
+    updateBalanceLabel()
+  }
+  
   // MARK: - UICollectionView
   
   func setupCollectionViewCells() {
@@ -102,7 +107,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     if let currentSelection = currentSelection {
       do {
         try vendingMachine.vend(currentSelection, quantity:  quantity)
-        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
+        updateBalanceLabel()
       } catch {
         // FIXME: Me no handle error
       }
@@ -114,13 +119,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
   @IBAction func updateQuantity(sender: UIStepper) {
     quantity = sender.value
     updateTotalPriceLabel()
+    updateQuantityLabel()
   }
   
   func updateTotalPriceLabel() {
     if let currentSelection = currentSelection,
       let item = vendingMachine.itemForCurrentSelection(currentSelection) {
         totalLabel.text = "\(item.price * quantity)"
+        
     }
+  }
+  
+  func updateQuantityLabel() {
+    quantityLabel.text = "\(quantity)"
+  }
+  
+  func updateBalanceLabel() {
+    balanceLabel.text = "$\(vendingMachine.amountDeposited)"
   }
 }
 
