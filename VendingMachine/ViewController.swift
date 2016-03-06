@@ -20,6 +20,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
   
   let vendingMachine: VendingMachineType
   var currentSelection: VendingSelection?
+  var quantity: Double = 1.0
   
   required init?(coder aDecoder: NSCoder) {
     do {
@@ -94,5 +95,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
   }
   
   // MARK: - Helper Methods
+  
+  @IBAction func purchase() {
+    if let currentSelection = currentSelection {
+      do {
+        try vendingMachine.vend(currentSelection, quantity:  quantity)
+      } catch {
+        // FIXME: Me no handle error
+      }
+    } else {
+      // FIXME: Bitch, you need to alert the user that they haven't selected anything
+    }
+  }
+  
 }
 
