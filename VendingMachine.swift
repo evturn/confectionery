@@ -140,7 +140,7 @@ class VendingMachine: VendingMachineType {
   }
   
   func deposit(amount: Double) {
-    // Hi
+    amountDeposited += amount
   }
   
 }
